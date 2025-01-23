@@ -42,7 +42,9 @@ def process_flow_logs(directory):
                         if field in field_positions:
                             pos = field_positions[field]
                             if pos < len(values):
-                                record[field] = values[pos]
+                                # Convert '-' to empty string
+                                value = values[pos]
+                                record[field] = '' if value == '-' else value
                     
                     all_records.append(record)
                     
